@@ -3,7 +3,7 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        https://leetcode.com/studyplan/leetcode-75/*
+// @match        https://leetcode.com/*
 // @grant        none
 // ==/UserScript==
 
@@ -35,6 +35,12 @@ async function waitFor(durationInSeconds) {
 async function perform() {
    await waitFor(2);
    await hideCategories();
+
+    // Add event listener to the div
+  const targetDiv = document.querySelector('div[data-state="closed"]');
+  if (targetDiv) {
+    targetDiv.addEventListener('click', hideCategories);
+  }
 }
 
 window.onload = perform;
